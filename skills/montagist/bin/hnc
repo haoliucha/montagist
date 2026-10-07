@@ -1,0 +1,73 @@
+#!/bin/sh
+# Locate a Montagist command, verify its protocol, then pass arguments unchanged.
+# HNC_BIN is an explicit override for local development. PATH is accepted only
+# when it resolves to a launcher in a known Montagist.app installation.
+
+app_system=/Applications/Montagist.app/Contents/Resources/bin/hnc
+app_user=$HOME/Applications/Montagist.app/Contents/Resources/bin/hnc
+
+canonical() {
+	current=$1
+	case $current in
+		/*) ;;
+		*) current=$PWD/$current ;;
+	esac
+	hops=0
+	while [ -L "$current" ]; do
+		[ "$hops" -lt 16 ] || return 1
+		parent=$(/usr/bin/dirname "$current")
+		parent=$(cd -P "$parent" 2>/dev/null && pwd -P) || return 1
+		link=$(/usr/bin/readlink "$current") || return 1
+		case $link in
+			/*) current=$link ;;
+			*) current=$parent/$link ;;
+		esac
+		hops=$((hops + 1))
+	done
+	[ -f "$current" ] && [ -x "$current" ] || return 1
+	parent=$(/usr/bin/dirname "$current")
+	parent=$(cd -P "$parent" 2>/dev/null && pwd -P) || return 1
+	base=${current##*/}
+	printf '%s/%s\n' "$parent" "$base"
+}
+
+valid() {
+	[ -n "$1" ] || return 1
+	[ -x "$1" ] && [ -f "$1" ] || return 1
+	probe=$("$1" version --json 2>/dev/null) || return 1
+	printf '%s\n' "$probe" | /usr/bin/grep -Eq '"name"[[:space:]]*:[[:space:]]*"hnc"' || return 1
+	printf '%s\n' "$probe" | /usr/bin/grep -Eq '"proto"[[:space:]]*:[[:space:]]*1([^0-9]|$)' || return 1
+}
+
+try_exec() {
+	candidate=$1
+	shift
+	[ -n "$candidate" ] || return 1
+	resolved=$(canonical "$candidate") || return 1
+	[ "$resolved" != "$self" ] || return 1
+	valid "$resolved" || return 1
+	exec "$resolved" "$@"
+}
+
+self=$(canonical "$0") || self=
+
+if [ -n "${HNC_BIN:-}" ]; then
+	candidate=$HNC_BIN
+	try_exec "$candidate" "$@"
+fi
+
+path_candidate=$(command -v hnc 2>/dev/null || :)
+if [ -n "$path_candidate" ]; then
+	path_real=$(canonical "$path_candidate" 2>/dev/null || :)
+	system_real=$(canonical "$app_system" 2>/dev/null || :)
+	user_real=$(canonical "$app_user" 2>/dev/null || :)
+	if [ -n "$path_real" ] && { [ "$path_real" = "$system_real" ] || [ "$path_real" = "$user_real" ]; }; then
+		try_exec "$path_candidate" "$@"
+	fi
+fi
+
+try_exec "$app_system" "$@"
+try_exec "$app_user" "$@"
+
+printf '%s\n' '没找到 Montagist 的命令行工具。先安装 Mac 版：https://montagist.haoliucha.com/download ，打开后在菜单栏里选「安装命令行工具…」。' >&2
+exit 3
