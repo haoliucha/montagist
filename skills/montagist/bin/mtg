@@ -1,10 +1,10 @@
 #!/bin/sh
 # Locate a Montagist command, verify its protocol, then pass arguments unchanged.
-# HNC_BIN is an explicit override for local development. PATH is accepted only
+# MTG_BIN is an explicit override for local development. PATH is accepted only
 # when it resolves to a launcher in a known Montagist.app installation.
 
-app_system=/Applications/Montagist.app/Contents/Resources/bin/hnc
-app_user=$HOME/Applications/Montagist.app/Contents/Resources/bin/hnc
+app_system=/Applications/Montagist.app/Contents/Resources/bin/mtg
+app_user=$HOME/Applications/Montagist.app/Contents/Resources/bin/mtg
 
 canonical() {
 	current=$1
@@ -35,7 +35,7 @@ valid() {
 	[ -n "$1" ] || return 1
 	[ -x "$1" ] && [ -f "$1" ] || return 1
 	probe=$("$1" version --json 2>/dev/null) || return 1
-	printf '%s\n' "$probe" | /usr/bin/grep -Eq '"name"[[:space:]]*:[[:space:]]*"hnc"' || return 1
+	printf '%s\n' "$probe" | /usr/bin/grep -Eq '"name"[[:space:]]*:[[:space:]]*"mtg"' || return 1
 	printf '%s\n' "$probe" | /usr/bin/grep -Eq '"proto"[[:space:]]*:[[:space:]]*1([^0-9]|$)' || return 1
 }
 
@@ -51,12 +51,12 @@ try_exec() {
 
 self=$(canonical "$0") || self=
 
-if [ -n "${HNC_BIN:-}" ]; then
-	candidate=$HNC_BIN
+if [ -n "${MTG_BIN:-}" ]; then
+	candidate=$MTG_BIN
 	try_exec "$candidate" "$@"
 fi
 
-path_candidate=$(command -v hnc 2>/dev/null || :)
+path_candidate=$(command -v mtg 2>/dev/null || :)
 if [ -n "$path_candidate" ]; then
 	path_real=$(canonical "$path_candidate" 2>/dev/null || :)
 	system_real=$(canonical "$app_system" 2>/dev/null || :)

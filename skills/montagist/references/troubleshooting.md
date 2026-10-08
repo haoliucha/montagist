@@ -5,9 +5,9 @@ Read the final JSON envelope's `error.code`, `message`, and optional `hint`. A p
 | Exit / code | Next step |
 |---|---|
 | 1 `network`, `server`, `failed` | Check connection and `status`; if work might already have started, do not blindly repeat it. |
-| 2 `usage` | Use `bin/hnc help <命令> --json` and correct the named argument. |
+| 2 `usage` | Use `bin/mtg help <命令> --json` and correct the named argument. |
 | 3 `app-unreachable`, `app-auth`, `path-too-long` | Open or update the Mac app, then run the locator's version and `whoami` checks. A local connection problem is not a reason to bypass the app. |
-| 4 `not-signed-in`, `account-mismatch` | Ask the user to run `bin/hnc login --json` in their browser, or switch to the expected account. |
+| 4 `not-signed-in`, `account-mismatch` | Ask the user to run `bin/mtg login --json` in their browser, or switch to the expected account. |
 | 5 `not-found` | Verify the slug and signed-in account; another account's episode is intentionally hidden. |
 | 6 `needs-key` | Tell the user which provider is missing from `needsKey`; they enter it in the app or workbench, never in chat or CLI flags. |
 | 7 `declined` | Stop. The Mac question was declined, dismissed, or timed out. Wait for a new user request. |

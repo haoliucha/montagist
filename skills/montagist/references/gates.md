@@ -5,8 +5,8 @@ The five gates are 1a topic, 2b material review, 4v visuals, 4s whole voice, and
 For both decisions, put the user's original words **逐字** in `--note`：**不要编**、不要改写、不要代用户总结。Do not fill a generic “approved” note or silently make the user's choice. The app records the decision and displays 「经命令行」 next to gates passed here in the workbench.
 
 ```sh
-bin/hnc approve <期> <闸门> --note "<人的原话>" --json
-bin/hnc reject <期> <闸门> --note "<人的原话>" --json
+bin/mtg approve <期> <闸门> --note "<人的原话>" --json
+bin/mtg reject <期> <闸门> --note "<人的原话>" --json
 ```
 
 The user must also explicitly decide before `accept` (a proposed plan), `pick` (a card or opener), or either `verdict` outcome for a material. `accept` and `pick` have no `--note`; remember their decision in the conversation without inventing one. `verdict` requires `--note` for both `pass` and `back`.

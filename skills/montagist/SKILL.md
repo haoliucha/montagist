@@ -1,17 +1,17 @@
 ---
 name: montagist
-description: "Use Montagist · 奇镜（好牛叉）to make documentary-grade explainer videos: create and advance an episode through research, footage, script, storyboard, preview, voice and final cut, then export with the user's decisions. Use when the user mentions Montagist, 奇镜, 好牛叉, hnc, or asks ‘帮我做一期视频’."
+description: "Use Montagist · 奇镜 to make documentary-grade explainer videos: create and advance an episode through research, footage, script, storyboard, preview, voice and final cut, then export with the user's decisions. Use when the user mentions Montagist, 奇镜, mtg, or asks ‘帮我做一期视频’."
 ---
 
 # Montagist · 奇镜
 
-Work through the installed Mac app with this Skill's `bin/hnc` locator. Use `--json` on **every** command, including checks. The packaged tool can start the app in the background; if it cannot connect, ask the user to open the app. Login is shared with the tool.
+Work through the installed Mac app with this Skill's `bin/mtg` locator. Use `--json` on **every** command, including checks. The packaged tool can start the app in the background; if it cannot connect, ask the user to open the app. Login is shared with the tool.
 
 ## Start
 
-1. Run `bin/hnc version --json`. The locator checks the app command before forwarding. If it cannot find one, use [setup](references/setup.md).
-2. Run `bin/hnc whoami --json`. Check the signed-in account. If unsigned, ask the user to run `bin/hnc login --json` and confirm in their browser. Do not handle credentials or guess which account to use.
-3. For an existing episode, run `bin/hnc status <期> --json` and read `next`, the relevant step `state`, and `waitingOn`. For a new episode, ask for its topic or title, then use [stage 1](references/stage-1.md).
+1. Run `bin/mtg version --json`. The locator checks the app command before forwarding. If it cannot find one, use [setup](references/setup.md).
+2. Run `bin/mtg whoami --json`. Check the signed-in account. If unsigned, ask the user to run `bin/mtg login --json` and confirm in their browser. Do not handle credentials or guess which account to use.
+3. For an existing episode, run `bin/mtg status <期> --json` and read `next`, the relevant step `state`, and `waitingOn`. For a new episode, ask for its topic or title, then use [stage 1](references/stage-1.md).
 
 ## Human decisions
 

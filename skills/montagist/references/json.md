@@ -1,8 +1,8 @@
-# Stable CLI JSON (hnc 1)
+# Stable CLI JSON (mtg 1)
 
-Always pass `--json`. Success has `{"hnc":1,"ok":true,"command":"…","data":…}`; failure has `{"hnc":1,"ok":false,"command":"…","error":{"code":"…","message":"…","exit":N}}`. Optional error fields include `hint`, `needsKey`, and `needsConsent.kind`. Check `ok`; do not infer success from text or a progress event.
+Always pass `--json`. Success has `{"mtg":1,"ok":true,"command":"…","data":…}`; failure has `{"mtg":1,"ok":false,"command":"…","error":{"code":"…","message":"…","exit":N}}`. Optional error fields include `hint`, `needsKey`, and `needsConsent.kind`. Check `ok`; do not infer success from text or a progress event.
 
-While waiting, each earlier line may be an event: `{"hnc":1,"event":"progress","step":"4s","state":"running","text":"…","at":"…"}` or a `note` with `text` and `at`. The final line is the success or failure envelope. Ctrl-C ends local waiting with 130; it does not stop the cloud work.
+While waiting, each earlier line may be an event: `{"mtg":1,"event":"progress","step":"4s","state":"running","text":"…","at":"…"}` or a `note` with `text` and `at`. The final line is the success or failure envelope. Ctrl-C ends local waiting with 130; it does not stop the cloud work.
 
 `status` returns episode `id`, `slug`, `title`, `sample`, `mac`, `steps[]`, and `next`. A step has `id`, `name`, `gate`, `state`, `waitingOn`, `progress`, `failure`, `lastGate`. States: `locked`, `ready`, `queued`, `running`, `waiting-you`, `waiting-mac`, `done`, `sent-back`, `failed`. `lastGate` is null or `{decision,note,via,at}`; `via=cli` displays as 「经命令行」 in the workbench. `next` is null or `{step,who,hint}`.
 
