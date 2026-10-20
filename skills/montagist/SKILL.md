@@ -20,6 +20,10 @@ Work through the installed Mac app with this Skill's `bin/mtg` locator. Use `--j
 - Spending on 4s when required, deleting an episode, and exporting a publication package prompt on the Mac. Tell the user to answer there. A cancellation or timeout is a decision to stop; never retry to bypass it. For exit codes 6, 7 and 8, follow [troubleshooting](references/troubleshooting.md).
 - Stop at 5p and 5r. The user completes publication and registration in the workbench. Exporting a package does not publish or change those steps.
 
+## Media boundary
+
+Remote media search and download are available. Before a remote video is downloaded, the person must record in the material plan their permission to copy, edit and use it commercially, and the evidence that the source allows downloading; without these records the download is blocked. Public access or attribution alone is not permission, and the record is the person's own declaration. The person can also import videos or images they hold rights to through the Mac app's native file picker; this Skill cannot select local files or upload paths. If remote media is turned off for the service, `run 2b` returns `not-ready`; ask the person to import media in the Mac app instead.
+
 ## Route
 
 | Work | Inspect and act | Read |

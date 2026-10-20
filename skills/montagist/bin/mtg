@@ -69,5 +69,5 @@ fi
 try_exec "$app_system" "$@"
 try_exec "$app_user" "$@"
 
-printf '%s\n' '没找到 Montagist 的命令行工具。先安装 Mac 版：https://montagist.haoliucha.com/download ，打开后在菜单栏里选「安装命令行工具…」。' >&2
+printf '%s\n' '没找到 Montagist 的命令行工具。先安装 Mac 版：https://montagist.app/download ，打开后在菜单栏里选「安装命令行工具…」。' >&2
 exit 3

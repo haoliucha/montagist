@@ -2,7 +2,7 @@ Montagist is an AI video studio that lets one person make documentary-grade expl
 
 # Montagist Agent Skill
 
-This repository contains the Montagist Skill for Claude Code and Codex. Install the [Montagist Mac app](https://montagist.haoliucha.com/download), open it, and sign in before using the Skill to inspect or advance an episode through the local command-line tool.
+This repository contains the Montagist Skill for Claude Code and Codex. Install the [Montagist Mac app](https://montagist.app/download), open it, and sign in before using the Skill to inspect or advance an episode through the local command-line tool.
 
 Install the Skill:
 

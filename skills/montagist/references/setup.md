@@ -1,6 +1,6 @@
 # Set up the Mac app
 
-Install the [Montagist Mac app](https://montagist.haoliucha.com/download) and sign in. The Skill's `bin/mtg` locates the app's command; it does not store a second login. The packaged command can start the app in the background. If it cannot connect, ask the user to open the app. Capture and production need the Mac that holds the episode's material.
+Install the [Montagist Mac app](https://montagist.app/download) and sign in. The Skill's `bin/mtg` locates the app's command; it does not store a second login. The packaged command can start the app in the background. If it cannot connect, ask the user to open the app. Capture and production need the Mac that holds the episode's material.
 
 ```sh
 bin/mtg version --json

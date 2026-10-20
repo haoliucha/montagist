@@ -2,7 +2,7 @@
 
 # Montagist · 奇镜 Agent Skill
 
-这份仓库提供给 Claude Code 和 Codex 使用的 Montagist Skill。制作台需要另行安装 [Montagist Mac 版](https://montagist.haoliucha.com/download)，打开并登录后，Skill 才能通过本机工具查看和推进你的一期。
+这份仓库提供给 Claude Code 和 Codex 使用的 Montagist Skill。制作台需要另行安装 [Montagist Mac 版](https://montagist.app/download)，打开并登录后，Skill 才能通过本机工具查看和推进你的一期。
 
 安装 Skill：
 
